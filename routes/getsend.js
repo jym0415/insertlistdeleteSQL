@@ -17,7 +17,8 @@ router.post('/post',(req, res) => {
     });
 })
 router.get('/awssql', (req, res) => {
-    connection.query('SELECT * FROM  prev_interview', (error, rows) => {
+    connection.query('SELECT * FROM  prev_interview', 
+      (error, rows) => {
         if (error) throw error;
         console.log('해당스키마안의 테이블내용: ', rows);
         res.send(rows);

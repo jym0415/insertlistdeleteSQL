@@ -4,7 +4,9 @@
   "description": "",
   "main": "bby.js",
   "scripts": {
-    "start": "nodemon bby.js",
+    "start" : "concurrently --kill-others-on-fail \"npm run server\" \"npm run react\" ",
+    "react" : "cd front && npm start",
+    "server": "nodemon bby.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
