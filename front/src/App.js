@@ -19,8 +19,8 @@ function App() {
          }
         }></InterviewList>}></Route>
 
-        <Route path='/interviewModify' element={<InterviewModify></InterviewModify>}></Route>
-        
+        <Route path='/interviewModify:no' element={<InterviewModify></InterviewModify>}></Route>
+
         <Route path='/' element={<InterviewInsert dbinfo={ {         
          titlenm : '아마존 폼태그', 
          botable : 'interviewWrite',
