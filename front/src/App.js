@@ -1,11 +1,18 @@
-import Funcom from './component/Functioncomponent';
-import Classcom from './component/Classcomponent';
+import InterviewInsert from './component/InterviewInsert';
+
 
 function App() {
   return (
     <div className="Wrap">
-      <Funcom></Funcom>
-      <Classcom></Classcom>
+      <InterviewInsert dbinfo={ {         
+         titlenm : '아마존 폼태그', 
+         botable : 'interviewwrite',
+         crud : 'insert',
+         mapper : 'introduceSQL',
+         mapperid : 'interviewInsert'
+         }
+        }></InterviewInsert>
+     
     </div>
   );
 }

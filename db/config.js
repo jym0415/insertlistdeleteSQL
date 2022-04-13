@@ -3,5 +3,5 @@ module.exports = {
     user : 'admin',
     password : 'Bang0820!!',
     port : '3306',
-    database : 'introduce_react_node'
+    database : 'bby_preinterview'
 }
