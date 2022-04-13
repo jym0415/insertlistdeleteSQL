@@ -6,7 +6,7 @@ import $ from 'jquery';
 function InsertInterview(props){
   
    const [message, setMessage ] = useState(''); //에러출력 변수
-   
+
    const submitInterview = async (type, e) => { //버튼클릭시 실행
 
     const  fnValidate = () =>{ 
@@ -75,7 +75,7 @@ function InsertInterview(props){
     
 
   return (
-    <div className={props.dbinfo.botable + " container"}>
+    <div className={props.dbinfo.botable + " container py-5"}>
       <h3 className='title'>{props.dbinfo.titlenm}</h3>
       <form action=""  method='post' name={props.dbinfo.botable}>
           <input type='hidden' name='crud' value={props.dbinfo.crud} />
