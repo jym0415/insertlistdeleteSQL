@@ -10,8 +10,39 @@ class Classcomponent extends Component {
         this.state ={
             message : '서비스요청을 기다리는 중...',
             interviewData : [],
+            deleteDB : async (no) => {
+                try{
+               
+                    axios.post('/api?type=interviewDelete', {
+                        
+                        body :{ 
+                                no : no,
+                                crud : 'delete',
+                                mapper : this.props.dbinfo.mapper,
+                                mapperid :'interviewDelete'
+                         }
+            
+                    }).then( res => {                 
+                        console.log(res.data) //데이터 콘솔에서 확인            
+                        try{                  
+                            this.setState({ message : '삭제되었습니다. '});
+                        }
+                        catch(err){
+                            this.setState({ message : 'DB데이터타입검수바람 ' +  err});
+                        }
+            
+                    }).catch( err => {
+                        this.setState({ message : '접속하였으나 처리하지 못함 ' +  err});
+                    })
+                   }
+                   catch(err){
+                       this.setState({ message : '서버접속불가 ' +  err});
+                   }  
+        
+            }
             
         }
+        
     }
     componentDidMount = async () => {
         try{
@@ -42,11 +73,16 @@ class Classcomponent extends Component {
            this.setState({ message : '서버접속불가 ' +  err});
        }  
         
+    
+    
     }
+
+    
+
     render() {
         return (
             <div className={ ' container text-center py-5'}>
-                 <h2>{ this.state.interviewData.length > 0 ? this.props.dbinfo.titlenm : this.state.message }</h2>                 
+                 <h2>{ this.state.interviewData.length > 0 ? this.props.dbinfo.titlenm + "("+ this.state.interviewData.length + ")" : this.state.message }</h2>                 
                  {
                      this.state.interviewData.map(
                          (content) =>
@@ -58,7 +94,7 @@ class Classcomponent extends Component {
                                             <p className='col-sm-9 mb-0'>{ content.subject }</p>
                                             <p className='btn interviewBtn col-sm-3  mb-0'>
                                                 <Link to={'/interviewModify/'+ content.no } className='modify btn btn-primary mx-1 '>M</Link> 
-                                                <a href="#" className='delete btn btn-primary mx-1'>D</a>
+                                                <a href="#" onClick={ e=>{ this.state.deleteDB(content.no) }}  className='delete btn btn-primary mx-1'>D</a>
                                             </p>                                            
                                      </div>
                                     </dt>
