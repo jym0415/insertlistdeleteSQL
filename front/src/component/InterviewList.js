@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Accordion from 'react-bootstrap/Accordion';
 
 
 import axios from 'axios';
@@ -64,51 +65,48 @@ class Classcomponent extends Component {
             catch(err){
                 this.setState({ message : 'DB데이터타입검수바람 ' +  err});
             }
-
         }).catch( err => {
             this.setState({ message : '접속하였으나 처리하지 못함 ' +  err});
         })
        }
        catch(err){
            this.setState({ message : '서버접속불가 ' +  err});
-       }  
-        
-    
-    
+       } 
     }
 
     
 
     render() {
         return (
-            <div className={ ' container text-center py-5'}>
-                 <h2>{ this.state.interviewData.length > 0 ? this.props.dbinfo.titlenm + "("+ this.state.interviewData.length + ")" : this.state.message }</h2>                 
-                 {
+            <Accordion defaultActiveKey="0" flush className={ ' container  py-5'}  tag ='div' >
+                <h2>{ this.state.interviewData.length > 0 ? this.props.dbinfo.titlenm + "("+ this.state.interviewData.length + ")" : this.state.message } </h2>
+                    {
+                        
                      this.state.interviewData.map(
-                         (content) =>
+                         (content,i) =>
                          {
                              return (
-                                 <dl className='row' key={ content.no }>
-                                     <dt className='border-top border-bottom'>
-                                        <div className='row justify-content-between align-items-center'>
-                                            <p className='col-sm-9 mb-0'>{ content.subject }</p>
-                                            <p className='btn interviewBtn col-sm-3  mb-0'>
+                                <Accordion.Item eventKey={i.toString()} key={ content.no } >
+
+                                    <Accordion.Header>
+                                   
+                                        <strong className='row justify-content-between align-items-center w-100'>
+                                            <span className='col-sm-9 mb-0'> { content.subject }</span>
+                                            <span className='btn interviewBtn col-sm-3  mb-0'>
                                                 <Link to={'/interviewModify/'+ content.no } className='modify btn btn-primary mx-1 '>M</Link> 
                                                 <a href="#" onClick={ e=>{ this.state.deleteDB(content.no) }}  className='delete btn btn-primary mx-1'>D</a>
-                                            </p>                                            
-                                     </div>
-                                    </dt>
-                                    <dd className='p-5'>
-                                     { content.content }
-                                    </dd>
-                                    
-                                    
-                                 </dl>
+                                            </span>                                            
+                                        </strong>
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                            { content.content }
+                                    </Accordion.Body>
+                                </Accordion.Item>
                              )
                          }
                      )
-                 }
-            </div>
+                    }
+            </Accordion>            
         );
     }
 }

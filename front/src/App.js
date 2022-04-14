@@ -19,7 +19,7 @@ function App() {
       
       <Routes>
       <Route path='/' element={<InterviewInsert dbinfo={ {         
-         titlenm : '아마존 폼태그', 
+         titlenm : '리액트스트랩 모듈로 만든 폼 아마존과연동', 
          botable : 'interviewWrite',
          crud : 'insert',
          mapper : 'introduceSQL',
