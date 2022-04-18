@@ -4,12 +4,12 @@
     <select id="interviewList">
         select 
             *
-        from bby_preinterview.conent_interview
-        order by no desc
+        from introduce.preinterview
+        order by keyno desc
     </select>
     <insert id="interviewInsert">
         insert into 
-            bby_preinterview.conent_interview (
+            introduce.preinterview (
                 subject                
                 , content 
             )
@@ -20,9 +20,9 @@
     </insert> 
     <delete id="interviewDelete">
         delete from
-            bby_preinterview.conent_interview 
+           introduce.preinterview
         where 
-            no = #{no}
+            keyno = #{keyno}
     </delete> 
    
 </mapper>
